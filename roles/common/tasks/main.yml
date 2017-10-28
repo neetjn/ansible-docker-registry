@@ -1,1 +1,8 @@
-- name:
+- name: Check docker installed
+  shell: which docker
+  register: check_docker
+  ignore_errors: yes
+
+- name: Install docker
+  shell: curl https://get.docker.com/ | sh
+  when: docker_check.rc == 1

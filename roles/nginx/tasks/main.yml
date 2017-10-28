@@ -1,0 +1,33 @@
+# all nginx configurations will be located at /etc/nginx on the target host
+# all nginx logs will be located at /var/log/nginx on the target host
+- name: Run NGNINX docker container
+  docker_container:
+    name: nginx
+    image: nginx
+    state: started
+    restart_policy: unless-stopped
+    volumes:
+      - /var/log/nginx:/var/log/nginx
+      - /etc/nginx/conf.d:/etc/nginx/conf.d
+      - /etc/nginx/proxy.conf:/etc/nginx/proxy.conf:ro
+    published_ports:
+      - 80:80
+      - 443:443
+
+- name: Generate hashed password for docker registry auth
+  htpasswd:
+    path: /etc/nginx/conf.d/registry.password
+    name: "{{registry_user}}"
+    password: "{{registry_pass}}"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Apply NGINX configuration for docker registry
+  template:
+    src: registry.conf.j2
+    dest: /etc/nginx/conf.d/registry.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart NGINX container

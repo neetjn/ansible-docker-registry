@@ -4,12 +4,12 @@
   hosts: registry
 
   post_tasks:
-  
+
     - name: Include NGINX role
       include_role:
         name: nginx
+        when: registry_host
 
   roles:
     - common
     - registry
-    - nginx
