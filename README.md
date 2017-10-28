@@ -6,9 +6,18 @@
 
 Ansible playbook for setting up and provisioning a private docker registry.
 
+This ansible playbook will install docker if not done so already, and any other necessary packages or modules. This playbook also supports NGINX proxying if a host is specified in the NGINX host group.
+
+### Variables
+
+* *ansible_ssh_user*: ...
+* *ansible_ssh_pass*: ...
+* *registry_port*: ...
+* *registry_user*: ...
+* *registry_pass*: ...
+
 ### Requirements
 
-* docker
 * ansible 2 - 2.3
     * *due to a change in version 2.4 defined [here](https://github.com/ansible/ansible/issues/31041), any version of ansible above 2.3.x is not recommended*
 
