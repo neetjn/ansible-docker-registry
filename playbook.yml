@@ -1,0 +1,15 @@
+---
+
+- name: Setup private docker registry
+  hosts: registry
+
+  post_tasks:
+  
+    - name: Include NGINX role
+      include_role:
+        name: nginx
+
+  roles:
+    - common
+    - registry
+    - nginx
