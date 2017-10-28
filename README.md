@@ -10,12 +10,9 @@ This ansible playbook will install docker if not done so already, and any other 
 
 ### Variables
 
-* *remote_host*: ...
-* *ansible_ssh_user*: ...
-* *ansible_ssh_pass*: ...
-* *registry_port*: ...
-* *registry_user*: ...
-* *registry_pass*: ...
+* **registry_port**: Port for NGINX registry to bind to.
+* **registry_user**: Registry username for http auth (for NGINX).
+* **registry_pass**: Registry password for http auth (for NGINX).
 
 ### Requirements
 
@@ -24,14 +21,30 @@ This ansible playbook will install docker if not done so already, and any other 
 
 ### Use
 
-Clone the repository
+Clone the repository,
 ```bash
 git clone https://github.com/neetjn/ansible-docker-registry.git
+```
 
-cd ansible-docker-registry
+Run the playbook,
+```bash
+ansible-playbook playbook.yml -i localhost
+```
 
+Optionally, if you would like to configure a remote ystem:
+* Replace the placeholder host in the `hosts` inventory file.
+* Uncomment the `ansible-ssh-user` and `ansible-ssh-pass` variables from your group variables.
+* Update them accordingly with login credentials for your remote machine.
+
+Then run your playbook,
+
+```bash
 ansible-playbook playbook.yml -i hosts
 ```
+
+Additionally if you would like to setup NGINX:
+* Modify your `registry_user` and `registry_pass` variables in your group variables to reflect your desired credentials.
+* Add `--extra-vars "registry_host=mydomain.com"` to then end of your ansible-playbook command.
 
 ---
 
