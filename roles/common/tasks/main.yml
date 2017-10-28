@@ -5,4 +5,4 @@
 
 - name: Install docker
   shell: curl https://get.docker.com/ | sh
-  when: docker_check.rc == 1
+  when: check_docker.rc == 1

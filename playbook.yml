@@ -1,15 +1,17 @@
 ---
 
 - name: Setup private docker registry
-  hosts: registry
+  hosts: registry | localhost
 
   post_tasks:
 
     - name: Include NGINX role
       include_role:
         name: nginx
-        when: registry_host
+      when: registry_host is defined
 
   roles:
     - common
     - registry
+
+  become: True
