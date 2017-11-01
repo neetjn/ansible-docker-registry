@@ -10,6 +10,8 @@ This ansible playbook will install docker if not done so already, and any other 
 
 ### Variables
 
+Playbook inventory variables can be found in `groupvars/all.yml`.
+
 * **registry_port**: Port for NGINX registry to bind to.
 * **registry_user**: Registry username for http auth (for NGINX).
 * **registry_pass**: Registry password for http auth (for NGINX).
