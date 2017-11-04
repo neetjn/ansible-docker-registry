@@ -12,14 +12,16 @@ This ansible playbook will install docker if not done so already, and any other 
 
 Playbook inventory variables can be found in `groupvars/all.yml`.
 
-* **registry_port**: Port for NGINX registry to bind to.
-* **registry_user**: Registry username for http auth (for NGINX).
-* **registry_pass**: Registry password for http auth (for NGINX).
+    registry_port: Port for NGINX registry to bind to.
+    registry_user: Registry username for http auth (for NGINX).
+    registry_pass: Registry password for http auth (for NGINX).
 
 ### Requirements
 
-* ansible 2 - 2.3
-    * *due to a change in version 2.4 defined [here](https://github.com/ansible/ansible/issues/31041), any version of ansible above 2.3.x is not recommended*
+    git
+    ansible 2 - 2.3
+
+Due to a change in version 2.4 explained [here](https://github.com/ansible/ansible/issues/31041), any version of ansible above 2.3.x is not recommended.
 
 ### Use
 
@@ -30,7 +32,7 @@ git clone https://github.com/neetjn/ansible-docker-registry.git
 
 Run the playbook,
 ```bash
-ansible-playbook playbook.yml -i localhost
+ansible-playbook playbook.yml
 ```
 
 Optionally, if you would like to configure a remote ystem:
